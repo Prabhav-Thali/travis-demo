@@ -1,0 +1,24 @@
+language: go
+go:
+- '1.15'
+os: linux
+
+jobs:
+  allow_failures:
+  - if: branch = master
+    arch: s390x
+  include:
+  - stage: Build and push tag on s390x
+    if: branch = master
+    name: Build on s390x
+    arch: s390x
+    script: 
+    - |
+      exit 1
+  - stage: Build and push tag on ppc64le
+    if: branch = master
+    name: Build on ppc64le
+    arch: ppc64le
+    script: 
+    - |
+      echo $PR_NUMBER
